@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBGI - Typography & Layout Engine</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  /* DBGI Typography & Color Engine
+    Design System: Pentagram High-Tension Editorial (Optimized)
+  */
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,600&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    /* Core Brand Palette */
+    --canopy-black: #06120B;    
+    --forest-core: #0D2617;     
+    --nature-green: #009A44;    /* True nature island green */
+    --volcanic-coral: #F24C27;  /* Kinetic Accent */
+    
+    /* Surfaces */
+    --paper-raw: #EAE6DF;       
+    --paper-refined: #FCFBFA;   
+    
+    /* Typographic Inks */
+    --ink: var(--canopy-black);
+    --ink-soft: #3A423C;
+    --ink-muted: #737A75;
+    
+    /* Structural Rules */
+    --rule: #DEDCD5;            
+    --rule-light: #EBE9E2;
+    
+    /* Interactive States */
+    --hover-tint: #FFF5F2;      
+    
+    /* Physics-Based Easing */
+    --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  body {
+    background-color: var(--paper-raw);
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  .dbgi-wrap {
+    background: var(--paper-refined);
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 4px;
+    box-shadow: 0 32px 64px rgba(6, 18, 11, 0.08), 0 2px 8px rgba(6, 18, 11, 0.04);
+    overflow: hidden;
+  }
+
+  /* Structural Typography */
+  h1, h2, h3, .serif-text {
+    font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+    color: var(--ink);
+  }
+
+  h1 a, h2 a, h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  /* Stretched-Link Accessibility Pattern */
+  .card-link-target {
+    position: relative;
+    transition: background-color var(--transition-smooth), transform var(--transition-smooth);
+  }
+
+  .stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    content: "";
+  }
+
+  /* Top Utilities Bar */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    background: var(--paper-refined);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .top-left, .top-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .menu-icon, .top-icon {
+    font-size: 20px;
+    color: var(--ink);
+    transition: color var(--transition-fast);
+  }
+
+  .menu-icon:hover, .top-icon:hover {
+    color: var(--volcanic-coral);
+  }
+
+  .top-links {
+    display: flex;
+    gap: 24px;
+    margin-left: 8px;
+  }
+
+  .top-links a, .login-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .top-links a:hover, .login-text:hover { 
+    color: var(--volcanic-coral); 
+  }
+
+  .subscribe-btn {
+    background: var(--volcanic-coral);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background-color var(--transition-fast);
+  }
+  
+  .subscribe-btn:hover { 
+    background: var(--canopy-black);
+  }
+
+  /* Masthead Architecture */
+  .masthead-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 40px 32px;
+    background: var(--paper-refined);
+  }
+
+  .masthead-aside { 
+    display: flex; 
+    align-items: center;
+    gap: 16px; 
+  }
+  
+  .masthead-aside.right { 
+    justify-content: flex-end;
+    text-align: right; 
+  }
+
+  .masthead-dispatch {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .masthead-dispatch.left {
+    align-items: flex-start;
+    text-align: left;
+    margin-right: auto;
+  }
+
+  .masthead-aside.right.masthead-dispatch {
+    align-items: flex-end;
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .masthead-icon-svg { 
+    width: 44px; 
+    height: 44px; 
+    flex-shrink: 0;
+  }
+
+  .masthead-dispatch-img {
+    width: 96px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+    background: transparent;
+  }
+
+  .masthead-dispatch-img--landscape {
+    width: 152px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .dispatch-caption {
+    font-family: 'Newsreader', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--forest-core);
+    line-height: 1.35;
+    letter-spacing: normal;
+    text-transform: none;
+    max-width: 12rem;
+  }
+
+  .aside-caption {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .masthead-logo {
+    font-family: 'Newsreader', 'Georgia', serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-align: center;
+    color: var(--nature-green); 
+    margin: 0 32px;
+    line-height: 0.85;
+  }
+
+  /* Navigation Ribbon */
+  .nav-strip {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 16px 32px;
+    background: var(--paper-refined);
+    border-top: 1px solid var(--rule);
+    border-bottom: 2px solid var(--canopy-black);
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-strip::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  .nav-strip button {
+    font-family: 'Newsreader', 'Georgia', serif;
+    font-size: 1.15rem; 
+    font-weight: 700;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-strip button:hover { 
+    color: var(--volcanic-coral);
+  }
+
+  /* Editorial Layout Grid */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 320px;
+    background: var(--rule);
+    gap: 1px;
+  }
+
+  .lead-col, .mid-col {
+    background: var(--paper-refined);
+    padding: 40px;
+  }
+  
+  .lead-col:hover, .mid-story-block:hover { 
+    background: var(--hover-tint); 
+  }
+
+  /* Precise Typographic Hierarchy */
+  .eyebrow {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--volcanic-coral); 
+    margin-bottom: 16px;
+    display: block;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .lead-headline {
+    font-size: clamp(2.4rem, 3.2vw, 3.4rem);
+    font-weight: 800; 
+    line-height: 1.05;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em; 
+  }
+
+  .mid-headline {
+    font-size: clamp(1.6rem, 2vw, 2.2rem);
+    font-weight: 700; 
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em; 
+  }
+
+  .lead-standfirst {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+
+  .read-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .mid-story-block {
+    padding: 16px;
+    margin: -16px;
+    border-radius: 4px;
+  }
+
+  .mid-image-placeholder {
+    width: 100%;
+    margin-bottom: 24px;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--paper-raw);
+    border: 1px solid var(--rule);
+  }
+  
+  .mid-image-placeholder img,
+  .mid-image-placeholder svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Opinion Structural Component */
+  .opinion-box {
+    position: relative;
+    background: var(--rule-light);
+    padding: 24px;
+    border-radius: 4px;
+    margin-top: 32px;
+    border: 1px solid var(--rule);
+    display: block;
+    text-decoration: none;
+    transition: transform var(--transition-smooth), background-color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+    z-index: 2;
+  }
+  
+  .opinion-box:hover {
+    transform: translateY(-2px);
+    background: var(--paper-refined);
+    border-color: var(--volcanic-coral);
+    box-shadow: 0 12px 24px rgba(242, 76, 39, 0.06);
+  }
+
+  .opinion-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+
+  .opinion-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--paper-refined);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .opinion-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    transform: scale(1.12);
+    display: block;
+  }
+
+  .opinion-name { 
+    font-size: 0.95rem; 
+    font-weight: 800; 
+    color: var(--ink); 
+  }
+  
+  .opinion-role { 
+    font-size: 0.8rem; 
+    color: var(--ink-muted); 
+    margin-bottom: 12px; 
+  }
+  
+  .opinion-text { 
+    font-family: 'Newsreader', serif;
+    font-size: 1.2rem; 
+    line-height: 1.4; 
+    color: var(--ink); 
+    font-style: italic; 
+  }
+
+  /* Institutional Dark Pine Sidebar */
+  .side-col {
+    padding: 40px 24px;
+    background: var(--forest-core); 
+    color: var(--paper-refined);
+  }
+
+  .side-label {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--volcanic-coral);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+  }
+
+  .side-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+  }
+
+  .side-item:last-of-type { 
+    border-bottom: none; 
+  }
+
+  .side-item:hover .side-title {
+    color: var(--volcanic-coral);
+  }
+
+  .side-icon-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--paper-refined);
+    font-size: 1.15rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .side-content-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .side-title { 
+    font-family: 'Newsreader', serif;
+    font-size: 1.15rem; 
+    font-weight: 600; 
+    color: var(--paper-refined); 
+    line-height: 1.35; 
+    transition: color var(--transition-fast);
+  }
+  
+  .side-sub { 
+    font-size: 0.75rem; 
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #8C9990; 
+  }
+
+  /* Sector Navigation Strip */
+  .sector-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-refined);
+    flex-wrap: wrap;
+  }
+
+  .sector-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    margin-right: 12px;
+  }
+
+  .sector-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    background: var(--paper-refined);
+    padding: 8px 18px;
+    border-radius: 4px; 
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: var(--transition-fast);
+  }
+
+  /* Pentagram Option 1: Kinetic Coral Flash Interaction */
+  .sector-pill:hover { 
+    border-color: var(--volcanic-coral); 
+    background: var(--volcanic-coral); 
+    color: #ffffff; /* High contrast reading white on hover */
+  }
+
+  /* Modernized Grid Footer Links */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--rule);
+    gap: 1px;
+  }
+
+  .bottom-col {
+    background: var(--paper-refined);
+    padding: 40px 32px;
+  }
+  
+  .bottom-col:hover { 
+    background: var(--hover-tint); 
+    transform: translateY(-2px);
+    z-index: 2;
+    box-shadow: 0 16px 32px rgba(6, 18, 11, 0.04);
+  }
+
+  .bottom-headline {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .bottom-snip {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* Responsive Architectures */
+  @media (max-width: 1024px) {
+    .main-grid { grid-template-columns: 1fr 1fr; }
+    .side-col { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 40px; }
+    .side-label { grid-column: span 2; margin-bottom: 0; }
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 0; background-color: var(--paper-refined); }
+    .dbgi-wrap { border-radius: 0; box-shadow: none; }
+    .top-bar { padding: 16px; }
+    .top-links { display: none; }
+    .masthead-row { padding: 32px 16px; grid-template-columns: 1fr; text-align: center; gap: 24px; }
+    .masthead-aside { display: none; }
+    .masthead-logo { font-size: 3.5rem; margin: 0; }
+    .nav-strip { justify-content: flex-start; padding: 16px; gap: 24px; }
+    .main-grid { grid-template-columns: 1fr; }
+    .lead-col, .mid-col { padding: 32px 16px; }
+    .side-col { grid-column: 1; grid-template-columns: 1fr; padding: 32px 16px; gap: 0; }
+    .side-label { grid-column: 1; margin-bottom: 16px; }
+    .sector-strip { padding: 24px 16px; }
+    .bottom-grid { grid-template-columns: 1fr; }
+    .bottom-col { padding: 32px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="dbgi-wrap">
+
+  <header class="top-bar">
+    <div class="top-left">
+      <button class="menu-icon" aria-label="Open Menu">
+        <i class="ti ti-menu-2" aria-hidden="true"></i>
+      </button>
+      <nav class="top-links" aria-label="Secondary Navigation">
+        <a href="#">News</a>
+        <a href="#">Opportunities</a>
+        <a href="#">Founders</a>
+      </nav>
+    </div>
+    <div class="top-right">
+      <button class="top-icon" aria-label="Search" style="margin-right: 4px;">
+        <i class="ti ti-search" aria-hidden="true"></i>
+      </button>
+      <button class="login-text">Log in</button>
+      <button class="subscribe-btn">Subscribe</button>
+    </div>
+  </header>
+
+  <section class="masthead-row">
+    <aside class="masthead-aside masthead-dispatch left">
+      <img class="masthead-dispatch-img" src="images/reporting-from-portsmouth.png" alt="Illustration of a coconut pen">
+      <div class="dispatch-caption">Reporting from Portsmouth Dominica</div>
+    </aside>
+
+    <div class="masthead-logo">DBGI</div>
+
+    <aside class="masthead-aside right masthead-dispatch">
+      <img class="masthead-dispatch-img" src="images/founder-dispatch-parrot.png?v=2" alt="Sisserou parrot carrying a dispatch envelope">
+      <div class="dispatch-caption">Weekly business news from DBGI</div>
+    </aside>
+  </section>
+
+  <nav class="nav-strip" aria-label="Main Navigation">
+    <button>News</button>
+    <button>Opportunities</button>
+    <button>Founders</button>
+    <button>Sectors</button>
+    <button>Island life</button>
+    <button>Ideation hub</button>
+  </nav>
+
+  <main class="main-grid">
+    
+    <article class="lead-col card-link-target">
+      <div class="mid-image-placeholder">
+        <img src="images/hot-springs.png" alt="Watercolor of a steaming turquoise hot spring surrounded by tropical forest">
+      </div>
+      <span class="eyebrow">Clean energy</span>
+      <h1 class="lead-headline">
+        <a href="#" class="stretched-link">The hot springs powering a small island's big ambitions</a>
+      </h1>
+      <p class="lead-standfirst">Dominica has spent a decade quietly building a geothermal industry from its volcanic backbone. Now the first power is reaching the grid, and a handful of founders are asking what comes next.</p>
+      <div class="read-meta">
+        <i class="ti ti-clock" aria-hidden="true"></i>
+        <span>6 min read</span>
+      </div>
+    </article>
+
+    <article class="mid-col">
+      <div class="mid-story-block card-link-target">
+        <div class="mid-image-placeholder">
+          <img src="images/algae-braic-growth.png" alt="Sea moss harvest flowing into export crates labeled Sea Harvest and Origin: Atlantic">
+        </div>
+        
+        <span class="eyebrow">Agribusiness</span>
+        <h2 class="mid-headline serif-text">
+          <a href="#" class="stretched-link">Algae-braic growth: how sea moss became Dominica's quiet export story</a>
+        </h2>
+        <div class="read-meta">
+          <i class="ti ti-clock" aria-hidden="true"></i>
+          <span>5 min read</span>
+        </div>
+      </div>
+
+      <a href="#" class="opinion-box">
+        <div class="opinion-label">Opinion</div>
+        <div class="opinion-avatar">
+          <img src="images/anya-pierre.png" alt="Anya Pierre">
+        </div>
+        <div class="opinion-name">Anya Pierre</div>
+        <div class="opinion-role">DBGI Ventures lead</div>
+        <div class="opinion-text">"Why Dominica’s next generation of founders should build from the island, leveraging its natural assets as a launchpad rather than treating its scale as a ceiling on growth."</div>
+      </a>
+    </article>
+
+    <aside class="side-col">
+      <h3 class="side-label">Also this week</h3>
+
+      <a href="#" class="side-item">
+        <div class="side-icon-badge">
+          <i class="ti ti-building-store"></i>
+        </div>
+        <div class="side-content-block">
+          <div class="side-title">312 new businesses registered this quarter</div>
+          <div class="side-sub">Up 19 percent</div>
+        </div>
+      </a>
+
+      <a href="#" class="side-item">
+        <div class="side-icon-badge">
+          <i class="ti ti-bulb"></i>
+        </div>
+        <div class="side-content-block">
+          <div class="side-title">Inside the new founder grant fund</div>
+          <div class="side-sub">XCD 15M committed</div>
+        </div>
+      </a>
+
+      <a href="#" class="side-item">
+        <div class="side-icon-badge">
+          <i class="ti ti-circle-half-vertical"></i>
+        </div>
+        <div class="side-content-block">
+          <div class="side-title">The nature isle's eco-luxury tier takes shape</div>
+          <div class="side-sub">Four resorts in development</div>
+        </div>
+      </a>
+
+      <a href="#" class="side-item">
+        <div class="side-icon-badge">
+          <i class="ti ti-rocket"></i>
+        </div>
+        <div class="side-content-block">
+          <div class="side-title">Three accelerator graduates close seed rounds</div>
+          <div class="side-sub">First international capital</div>
+        </div>
+      </a>
+    </aside>
+
+  </main>
+
+  <section class="sector-strip" aria-label="Sector Categories">
+    <div class="sector-label">Browse by sector:</div>
+    <button class="sector-pill">Clean energy</button>
+    <button class="sector-pill">Agribusiness</button>
+    <button class="sector-pill">Tourism</button>
+    <button class="sector-pill">Tech & digital</button>
+    <button class="sector-pill">Blue economy</button>
+  </section>
+
+  <footer class="bottom-grid">
+    <article class="bottom-col card-link-target">
+      <h3 class="bottom-headline serif-text">
+        <a href="#" class="stretched-link">Inside the founder house: a year of building on the island</a>
+      </h3>
+      <p class="bottom-snip">Twelve ventures, one accelerator, and the complex lessons of building consumer products from a regional home market.</p>
+    </article>
+    <article class="bottom-col card-link-target">
+      <h3 class="bottom-headline serif-text">
+        <a href="#" class="stretched-link">Building back better: the bonds funding Dominica's resilience</a>
+      </h3>
+      <p class="bottom-snip">A novel structural financing model ties local reconstruction strategies straight to long-term sovereign credit improvement.</p>
+    </article>
+    <article class="bottom-col card-link-target">
+      <h3 class="bottom-headline serif-text">
+        <a href="#" class="stretched-link">Why financial services firms are taking a second look at Roseau</a>
+      </h3>
+      <p class="bottom-snip">A thoroughly modernised regulatory framework is quietly drawing institutional interest back to the island's capital.</p>
+    </article>
+  </footer>
+
+</div>
+
+</body>
+</html>
