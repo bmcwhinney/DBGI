@@ -596,21 +596,148 @@
   }
 
   @media (max-width: 768px) {
-    body { padding: 0; background-color: var(--paper-refined); }
-    .dbgi-wrap { border-radius: 0; box-shadow: none; }
-    .top-bar { padding: 16px; }
+    body {
+      padding: 0;
+      background-color: var(--paper-refined);
+    }
+
+    .dbgi-wrap {
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .top-bar {
+      padding: 12px 16px;
+      gap: 12px;
+    }
+
+    .top-left, .top-right {
+      gap: 12px;
+    }
+
     .top-links { display: none; }
-    .masthead-row { padding: 32px 16px; grid-template-columns: 1fr; text-align: center; gap: 24px; }
-    .masthead-aside { display: none; }
-    .masthead-logo { font-size: 3.5rem; margin: 0; }
-    .nav-strip { justify-content: flex-start; padding: 16px; gap: 24px; }
+
+    .login-text {
+      display: none;
+    }
+
+    .subscribe-btn {
+      padding: 10px 16px;
+      font-size: 0.75rem;
+    }
+
+    .menu-icon, .top-icon {
+      min-width: 44px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .masthead-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "logo"
+        "right";
+      align-items: center;
+      padding: 24px 16px 20px;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .masthead-logo {
+      grid-area: logo;
+      font-size: clamp(2.5rem, 14vw, 3.5rem);
+      margin: 0;
+      justify-self: center;
+    }
+
+    .masthead-aside.left {
+      display: none;
+    }
+
+    .masthead-aside.right.masthead-dispatch {
+      grid-area: right;
+      display: flex;
+      justify-self: center;
+      align-items: center;
+      text-align: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .masthead-dispatch-img {
+      width: 80px;
+    }
+
+    .dispatch-caption {
+      font-size: 0.8rem;
+      max-width: 9.5rem;
+      line-height: 1.3;
+    }
+
+    .nav-strip {
+      justify-content: flex-start;
+      padding: 14px 16px;
+      gap: 20px;
+    }
+
+    .nav-strip button {
+      font-size: 1rem;
+    }
+
     .main-grid { grid-template-columns: 1fr; }
-    .lead-col, .mid-col { padding: 32px 16px; }
-    .side-col { grid-column: 1; grid-template-columns: 1fr; padding: 32px 16px; gap: 0; }
+
+    .lead-col, .mid-col { padding: 28px 16px; }
+
+    .lead-headline {
+      font-size: clamp(1.85rem, 8vw, 2.4rem);
+      line-height: 1.08;
+    }
+
+    .lead-standfirst {
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    .mid-headline {
+      font-size: clamp(1.35rem, 6vw, 1.75rem);
+    }
+
+    .side-col {
+      grid-column: 1;
+      grid-template-columns: 1fr;
+      padding: 28px 16px;
+      gap: 0;
+    }
+
     .side-label { grid-column: 1; margin-bottom: 16px; }
-    .sector-strip { padding: 24px 16px; }
+
+    .side-title {
+      font-size: 1.05rem;
+    }
+
+    .sector-strip {
+      padding: 20px 16px;
+      gap: 10px;
+    }
+
+    .sector-pill {
+      padding: 10px 14px;
+    }
+
     .bottom-grid { grid-template-columns: 1fr; }
-    .bottom-col { padding: 32px 16px; }
+
+    .bottom-col { padding: 28px 16px; }
+
+    .bottom-headline {
+      font-size: 1.2rem;
+    }
+
+    .opinion-text {
+      font-size: 1.1rem;
+    }
   }
 </style>
 </head>
@@ -782,6 +909,14 @@
   </footer>
 
 </div>
+
+<script>
+  document.addEventListener('click', (event) => {
+    if (event.target.closest('a, button')) {
+      event.preventDefault();
+    }
+  });
+</script>
 
 </body>
 </html>
