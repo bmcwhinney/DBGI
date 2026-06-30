@@ -241,6 +241,11 @@
     letter-spacing: 0.04em;
   }
 
+  .masthead-brand {
+    text-align: center;
+    margin: 0 32px;
+  }
+
   .masthead-logo {
     font-family: 'Newsreader', 'Georgia', serif;
     font-size: clamp(3.5rem, 6vw, 5.5rem);
@@ -248,8 +253,19 @@
     letter-spacing: -0.03em;
     text-align: center;
     color: var(--nature-green); 
-    margin: 0 32px;
+    margin: 0;
     line-height: 0.85;
+  }
+
+  .masthead-tagline {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--forest-core);
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+    margin: 12px auto 0;
+    max-width: 18rem;
   }
 
   /* Navigation Ribbon */
@@ -618,7 +634,11 @@
     .top-links { display: none; }
 
     .login-text {
-      display: none;
+      font-size: 0.75rem;
+      min-height: 44px;
+      padding: 0 4px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .subscribe-btn {
@@ -646,11 +666,20 @@
       text-align: center;
     }
 
-    .masthead-logo {
+    .masthead-brand {
       grid-area: logo;
-      font-size: clamp(2.5rem, 14vw, 3.5rem);
-      margin: 0;
       justify-self: center;
+      margin: 0;
+    }
+
+    .masthead-logo {
+      font-size: clamp(2.5rem, 14vw, 3.5rem);
+    }
+
+    .masthead-tagline {
+      font-size: 0.72rem;
+      margin-top: 10px;
+      max-width: 14rem;
     }
 
     .masthead-aside.left {
@@ -771,7 +800,10 @@
       <div class="dispatch-caption">Reporting from Portsmouth Dominica</div>
     </aside>
 
-    <div class="masthead-logo">DBGI</div>
+    <div class="masthead-brand">
+      <div class="masthead-logo">DBGI</div>
+      <p class="masthead-tagline">Dominica Business Growth &amp; Innovation</p>
+    </div>
 
     <aside class="masthead-aside right masthead-dispatch">
       <img class="masthead-dispatch-img" src="images/founder-dispatch-parrot.png?v=2" alt="Sisserou parrot carrying a dispatch envelope">
@@ -857,7 +889,7 @@
 
       <a href="#" class="side-item">
         <div class="side-icon-badge">
-          <i class="ti ti-circle-half-vertical"></i>
+          <i class="ti ti-home-eco"></i>
         </div>
         <div class="side-content-block">
           <div class="side-title">The nature isle's eco-luxury tier takes shape</div>
